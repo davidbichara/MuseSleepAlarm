@@ -7,6 +7,11 @@ from threading import Thread
 import os
 import traceback
 
+########################################################################################################################################
+#GenerateUI(): Launches and fully manages UI
+#Parms: None
+#Returns: None
+########################################################################################################################################
 
 def GenerateUI():
       # create root window
