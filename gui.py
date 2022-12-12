@@ -61,7 +61,7 @@ def GenerateUI():
     def clicked():
         stopAlarmCSV = pd.DataFrame(['Stop'])
         print(stopAlarmCSV.head())
-        stopAlarmCSV.to_csv('/home/pi/Desktop/MuseAlarm/data/alarm/alarmStop.csv')
+        stopAlarmCSV.to_csv('/home/pi/Desktop/Method2/alarmStop.csv')
         print('Button Pressed')
 
 
@@ -75,7 +75,7 @@ def GenerateUI():
    # def showConnection():
     #    contectionText = Label(root, text ="Connected!", fg="green", bg= 'white').grid(row=1,column=0, padx=5, pady=1)
     def updateConnection(connectionStatus, connectionLabel, gif, prevStatus):
-        if os.path.exists('/home/pi/Desktop/MuseAlarm/data/connected.csv'): # arr
+        if os.path.exists('/home/pi/Desktop/Method2/connected.csv'): # arr
             connection = "Connected"
         else:
             connection = "Not Connected"
