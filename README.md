@@ -1,17 +1,17 @@
 # How to Install on Raspberry Pi
-## Materials :
-### - Sd card, above 16 GB
-### -Raspberry Pi
-### - Monitor, keyboard, mouse all wired, 
-### -Screen for Raspberry Pi
-## Steps for Pi set up: 
-### 1) On computer, download the Raspberry Pi Imager
-### 2) Once downloaded open the Raspberry Pi Imager 
-### 3) Insert SD card into computer
-### 4) Select the Pi Raspbian OS, select the inserted SD card, and press Burn
-### 5) Remove SD from computer and place it into Pi
-### 6) Complete location, language, and wifi set up. Set username as pi and password as pi
-###   - This is important as the username will be the main directory set up under ~/home
+### Materials :
+- SD card, above 16 GB
+- Raspberry Pi
+- Monitor, keyboard, mouse all wired, 
+- Screen for Raspberry Pi
+### Steps for Pi set up: 
+1) On computer, download the Raspberry Pi Imager
+2) Once downloaded open the Raspberry Pi Imager 
+3) Insert SD card into computer
+4) Select the Pi Raspbian OS, select the inserted SD card, and press Burn
+5) Remove SD from computer and place it into Pi
+6) Complete location, language, and wifi set up. Set username as pi and password as pi
+   - This is important as the username will be the main directory set up under ~/home
 
 Steps for application set up:
 Connect to internet on the pi by selected the WiFi icon and inputting network information
