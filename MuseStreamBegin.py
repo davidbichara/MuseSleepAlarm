@@ -9,9 +9,16 @@ import pandas as pd
 import csv
 import os, sys
 
+########################################################################################################################################
+#start_stream(): Checks if muses exist and attempts to connect, start a stream, and update the connection status
+#Parms: None
+#Returns: None
+########################################################################################################################################
+
 def start_stream():
     
     while True:
+        #Search for Muses
         muses = list_muses()
 
         while not muses: #if not muses:
@@ -34,7 +41,13 @@ def start_stream():
             except(KeyboardInterrupt):
                 print('Stream has ended')
 
-
+########################################################################################################################################
+#__main__: Main function of the program, launches program and starts mutiprocesses to manage program
+#Parms: None
+#Returns: None
+########################################################################################################################################
+                
+                
 if __name__ == "__main__":
 
     #appends working directory to path
@@ -58,4 +71,5 @@ if __name__ == "__main__":
     #t1.start()
     t1.start()
     start_stream()
+    #Shut down stream 
     t1.kill()
