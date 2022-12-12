@@ -3,6 +3,12 @@ from PIL import Image, ImageTk
 from itertools import count
 import pandas as pd
 
+########################################################################################################################################
+#Class: Loads the gif which is shown on connection. It does this by loading frames frame by frame according to the gifs current state.
+#Parms: The image label from the Tkinter view which loads the gif
+#Returns: None
+########################################################################################################################################
+
 class ImageLabel(tk.Label):
     def load(self, im):
         if isinstance(im, str):
