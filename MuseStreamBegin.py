@@ -8,6 +8,7 @@ from gui import GenerateUI
 import pandas as pd
 import csv
 import os, sys
+import time
 
 ########################################################################################################################################
 #start_stream(): Checks if muses exist and attempts to connect, start a stream, and update the connection status
@@ -22,22 +23,25 @@ def start_stream():
         muses = list_muses()
 
         while not muses: #if not muses:
-            if os.path.exists('/home/pi/Desktop/Method2/connected.csv'):
-                os.remove('/home/pi/Desktop/Method2/connected.csv')
+            if os.path.exists('/home/pi/Desktop/Method2/connected.txt'):
+                os.remove('/home/pi/Desktop/Method2/connected.txt')
             print('No Muses Found')
         else:
             try:
-                f = open('/home/pi/Desktop/Method2/connected.csv', 'w')
+                f = open('/home/pi/Desktop/Method2/connected.txt', 'w+')
                 writer = csv.writer(f)
                 f.close()
+                f = pd.DataFrame()
+                f.to_csv('connected.csv')
+                print("Writing File")
                 #t2 = mp.Process(target=recordThread, args=())
                 #t2.start()
                 stream(str(muses[0]['address']))
 
                 # Note: Streaming is synchronous, so code here will not execute until the stream has been closed
                 #persists no connection to GUI
-                if os.path.exists('/home/pi/Desktop/Method2/connected.csv'):
-                    os.remove('/home/pi/Desktop/Method2/connected.csv')
+                if os.path.exists('/home/pi/Desktop/Method2/connected.txt'):
+                    os.remove('/home/pi/Desktop/Method2/connected.txt')
             except(KeyboardInterrupt):
                 print('Stream has ended')
 
@@ -55,9 +59,9 @@ if __name__ == "__main__":
     print("Working Directory added to path")
 
     sys.path.append(os.getcwd())
-    sys.path.append('/home/pi/Desktop/MuseAlarm/waveloading.gif')
-    sys.path.append('/home/pi/Desktop/MuseAlarm/checklist.png')
-    sys.path.append('/home/pi/Desktop/MuseAlarm/data/connected.csv')
+    #sys.path.append('/home/pi/Desktop/MuseAlarm/waveloading.gif')
+    #sys.path.append('/home/pi/Desktop/MuseAlarm/checklist.png')
+    #sys.path.append('/home/pi/Desktop/Model2/connected.csv')
     print("Working Directory added to path")
 
     if os.path.exists('/home/pi/Desktop/Method2/connected.csv'):
