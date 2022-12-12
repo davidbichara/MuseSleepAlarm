@@ -22,12 +22,12 @@ def start_stream():
         muses = list_muses()
 
         while not muses: #if not muses:
-            if os.path.exists('/home/pi/Desktop/MuseAlarm/data/connected.csv'):
-                os.remove('/home/pi/Desktop/MuseAlarm/data/connected.csv')
+            if os.path.exists('/home/pi/Desktop/Method2/connected.csv'):
+                os.remove('/home/pi/Desktop/Method2/connected.csv')
             print('No Muses Found')
         else:
             try:
-                f = open('/home/pi/Desktop/MuseAlarm/data/connected.csv', 'w')
+                f = open('/home/pi/Desktop/Method2/connected.csv', 'w')
                 writer = csv.writer(f)
                 f.close()
                 #t2 = mp.Process(target=recordThread, args=())
@@ -36,8 +36,8 @@ def start_stream():
 
                 # Note: Streaming is synchronous, so code here will not execute until the stream has been closed
                 #persists no connection to GUI
-                if os.path.exists('/home/pi/Desktop/MuseAlarm/data/connected.csv'):
-                    os.remove('/home/pi/Desktop/MuseAlarm/data/connected.csv')
+                if os.path.exists('/home/pi/Desktop/Method2/connected.csv'):
+                    os.remove('/home/pi/Desktop/Method2/connected.csv')
             except(KeyboardInterrupt):
                 print('Stream has ended')
 
@@ -60,8 +60,8 @@ if __name__ == "__main__":
     sys.path.append('/home/pi/Desktop/MuseAlarm/data/connected.csv')
     print("Working Directory added to path")
 
-    if os.path.exists('/home/pi/Desktop/MuseAlarm/data/connected.csv'):
-        os.remove('/home/pi/Desktop/MuseAlarm/data/connected.csv')
+    if os.path.exists('/home/pi/Desktop/Method2/connected.csv'):
+        os.remove('/home/pi/Desktop/Method2/connected.csv')
 
     stopAlarmCSV = pd.DataFrame([''])
     stopAlarmCSV.to_csv('/home/pi/Desktop/Method2/alarmStop.csv')
