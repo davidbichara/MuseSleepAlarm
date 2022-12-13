@@ -77,7 +77,6 @@ def GenerateUI():
     def updateConnection(connectionStatus, connectionLabel, gif, prevStatus):
         #print("calling updateConnection")
         if os.path.exists('/home/pi/Desktop/Method2/connected.txt'): # arr
-            print("Found connection in gui")
             connection = "Connected"
         else:
             connection = "Not Connected"

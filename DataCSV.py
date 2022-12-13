@@ -1,7 +1,6 @@
 # From https://github.com/alexandrebarachant/muse-lsl/blob/master/examples/neurofeedback.py
 
-from MuseStreamBegin import start_stream
-from EEGAnalysis import eegAnalysisM1
+#from EEGAnalysis import eegAnalysisM1
 import numpy as np  # Module that simplifies computations on matrices
 from pylsl import StreamInlet, resolve_byprop  # Module to receive EEG data
 import threading
@@ -49,14 +48,14 @@ def csvwrite(relaxed_status, final, file_name):
         fileName = findemptyfile(str(relaxed_status + "_RecordedData"))
     else:
         fileName = file_name
-    file = open(fileName, 'w')
+    file = open(fileName, 'w+')
     file.write(final)
 
 
-def data_reader(file_name, time):
+def data_reader():
     # Wait for stream to begin
     sleep(20)
-
+    time = 30
     """ EXPERIMENTAL PARAMETERS """
     # Modify these to change aspects of the signal processing
 
@@ -151,13 +150,10 @@ def data_reader(file_name, time):
         ch_data4 = np.array(eeg_data)[:, INDEX_CHANNEL4]
 
         # Update EEG buffer with the new data
-        eeg_buffer, filter_state = utils.update_buffer(
-            eeg_buffer1, ch_data1, notch=True,
-            filter_state=filter_state)
 
         """ 3.2 Analyze Data and Determine whether Alarm is called"""
         # Get newest samples from the buffer
-        alarmBool = eegAnalysisM1(ch_data1,ch_data2, ch_data3, ch_data4)
+        alarmBool = eegAnalysisM1(ch_data1,ch_data2, ch_data3, ch_data4,timestamp)
 
         #if analysis returns true boolean ->> trigger alarm sound
         if(alarmBool == True):
@@ -207,20 +203,3 @@ def data_reader(file_name, time):
     return
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Record EEG data and log to CSV')
-
-    parser.add_argument('-fname', action="store", dest="file_name", type=str, default=None)
-    parser.add_argument('-t', action="store", dest="time", type=int, default=5, help='Time of readings to take')
-
-    args = parser.parse_args()
-
-    file_name = args.file_name
-    time = args.time
-
-    #run1 = threading.Thread(target=start_stream, args=())
-    #run1.start()
-
-    data_reader(file_name, time)
-
-    sys.exit()

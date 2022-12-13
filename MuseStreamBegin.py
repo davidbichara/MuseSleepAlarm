@@ -1,7 +1,7 @@
 # From https://github.com/alexandrebarachant/muse-lsl/blob/master/examples/startMuseStream.py
 from muselsl import stream
 from musel.muselsl.stream import list_muses
-import DataCSV
+from DataCSV import data_reader
 import multiprocessing as mp
 import threading
 from gui import GenerateUI
@@ -9,6 +9,7 @@ import pandas as pd
 import csv
 import os, sys
 import time
+from museRecord import *
 
 ########################################################################################################################################
 #start_stream(): Checks if muses exist and attempts to connect, start a stream, and update the connection status
@@ -34,10 +35,10 @@ def start_stream():
                 f = pd.DataFrame()
                 f.to_csv('connected.csv')
                 print("Writing File")
-                #t2 = mp.Process(target=recordThread, args=())
-                #t2.start()
+                t2 = mp.Process(target=museRecord, args=())
+                t2.start()
                 stream(str(muses[0]['address']))
-
+                t2.kill()
                 # Note: Streaming is synchronous, so code here will not execute until the stream has been closed
                 #persists no connection to GUI
                 if os.path.exists('/home/pi/Desktop/Method2/connected.txt'):
