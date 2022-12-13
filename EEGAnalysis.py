@@ -11,6 +11,7 @@ import time
 from datetime import datetime
 import os
 import traceback
+from subprocess import call
 
 
 def alarmtest(eeg_band, eeg_fft):
@@ -115,7 +116,7 @@ def eegAnalysis():
     tp10 = ratios[1]
     af7 = ratios[2]
     af8 = ratios[3]
-    if(alarmBool==False):
+    if(alarmBool==True):
         duration = 1
         freq = 440
         call(["amixer", "-D", "pulse", "sset", "Master", str(100) + "%"])
@@ -129,4 +130,4 @@ def eegAnalysis():
                 stopAlarmCSV = True
             
 
-#eegAnalysis()
+eegAnalysis()

@@ -32,8 +32,6 @@ def start_stream():
                 f = open('/home/pi/Desktop/Method2/connected.txt', 'w+')
                 writer = csv.writer(f)
                 f.close()
-                f = pd.DataFrame()
-                f.to_csv('connected.csv')
                 print("Writing File")
                 t2 = mp.Process(target=museRecord, args=())
                 t2.start()
@@ -65,15 +63,14 @@ if __name__ == "__main__":
     #sys.path.append('/home/pi/Desktop/Model2/connected.csv')
     print("Working Directory added to path")
 
-    if os.path.exists('/home/pi/Desktop/Method2/connected.csv'):
-        os.remove('/home/pi/Desktop/Method2/connected.csv')
+    if os.path.exists('/home/pi/Desktop/Method2/connected.txt'):
+        os.remove('/home/pi/Desktop/Method2/connected.txt')
 
     stopAlarmCSV = pd.DataFrame([''])
     stopAlarmCSV.to_csv('/home/pi/Desktop/Method2/alarmStop.csv')
     
     #starts the UI process
     t1 = mp.Process(target=GenerateUI, args=())
-    #t1.start()
     t1.start()
     start_stream()
     #Shut down stream 
